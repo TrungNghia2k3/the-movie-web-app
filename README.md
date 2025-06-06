@@ -30,3 +30,18 @@ my-app/
 ├── package.json
 └── README.md
 
+Libraries Used
+
+- React
+- Axios
+- Bootstrap
+- Bootstrap Icons
+- React Router
+- Swiper
+- Web Vitals
+
+API used
+
+- The Movie Database (TMDb)
+
+- The techniques for making sliders and conveyors are still familiar and not smooth.

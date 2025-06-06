@@ -1,0 +1,96 @@
+/* src/components/Panel.css */
+.panel {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 228px;
+  color: #fff;
+  cursor: pointer;
+  flex: 0.5;
+  position: relative;
+  transition: flex 0.5s ease-in-out;
+}
+
+.panel h2 {
+  font-size: 32px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: none;
+  pointer-events: none;
+}
+
+.panel .button-list {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: none;
+  pointer-events: none;
+}
+
+.panel .badge-list {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: none;
+  pointer-events: none;
+}
+
+.panel .runtime {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: none;
+  pointer-events: none;
+}
+
+.panel.active {
+  flex: 1.5;
+}
+
+.panel.active h2 {
+  bottom: 330px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease-in 0.4s, transform 0.3s ease-in 0.4s;
+  pointer-events: auto;
+}
+
+.panel.active .badge-list {
+  bottom: 250px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease-in 0.4s, transform 0.3s ease-in 0.4s;
+  pointer-events: auto;
+}
+
+.panel.active .runtime {
+  bottom: 210px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease-in 0.4s, transform 0.3s ease-in 0.4s;
+  pointer-events: auto;
+}
+
+.panel.active .button-list {
+  bottom: 150px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease-in 0.4s, transform 0.3s ease-in 0.4s;
+  pointer-events: auto;
+}
