@@ -6,21 +6,30 @@ import {
 } from "../../services/api";
 import "./RecentlyReleased.css";
 
-const RecentlyReleased = () => {
+const RecentlyReleased = ({ onRenderComplete }) => {
   const [recentlyReleasedMovies, setRecentlyReleasedMovies] = useState([]);
 
   useEffect(() => {
     const fetchRecentlyReleasedMovies = async () => {
       const movies = await getRecentlyReleasedMovies();
       setRecentlyReleasedMovies(movies);
+
+      // Call onRenderComplete callback
+      if (onRenderComplete) {
+        onRenderComplete();
+      }
     };
     fetchRecentlyReleasedMovies();
-  }, []);
+  }, [onRenderComplete]);
+
+  if (!recentlyReleasedMovies.length) {
+    return null;
+  }
 
   return (
     <section className="recently-released">
       <div className="container-fluid">
-        <h2>Recently Released</h2>
+        <h1>Recently Released</h1>
         <div className="row">
           {recentlyReleasedMovies.slice(0, 8).map((movie) => (
             <div className="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-4" key={movie.id}>

@@ -1,6 +1,8 @@
 .coming-soon {
   position: relative;
   overflow: hidden;
+  padding: 40px 44px;
+  margin-bottom: 80px;
 
   .blur-background {
     position: absolute;
@@ -28,7 +30,7 @@
 .coming-soon-left .coming-soon-top-title {
   position: absolute;
   top: 0;
-  left: -60px;
+  left: -128px;
   background: #58dda3;
   padding: 8px 64px 8px 104px;
   color: #1b1b1b;
@@ -42,28 +44,31 @@
 .time-block {
   position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 70px;
+  width: 120px;
   height: 80px;
+}
+
+.time-block:first-child {
+  margin-left: -32px;
 }
 
 .time-value {
   font-size: 3rem;
   font-weight: bold;
   line-height: 1;
-  z-index: 1;
-  min-width: 2ch;
-  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .time-label {
-  position: absolute;
-  bottom: 24px;
-  left: 78px;
-  transform: rotate(-90deg) translateY(50%);
-  transform-origin: left bottom;
   font-size: 0.75rem;
+  font-weight: bold;
+  position: absolute;
+  right: 6px;
+  bottom: 58px;
+  transform: rotate(-90deg) translateY(50%);
+  transform-origin: right bottom;
   opacity: 0.8;
   text-transform: uppercase;
   white-space: nowrap;

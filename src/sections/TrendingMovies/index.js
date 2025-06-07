@@ -4,21 +4,26 @@ import { getMovieTrending } from "../../services/api";
 import { BACKDROP_W780_URL } from "../../services/api";
 import "./TrendingShows.css";
 
-const TrendingShows = () => {
+const TrendingShows = ({ onRenderComplete }) => {
   const [trendingMovies, setTrendingMovies] = useState([]);
 
   useEffect(() => {
     const fetchTrendingMovies = async () => {
       const movies = await getMovieTrending();
       setTrendingMovies(movies);
+
+      // Call onRenderComplete callback
+      if (onRenderComplete) {
+        onRenderComplete();
+      }
     };
     fetchTrendingMovies();
-  }, []);
+  }, [onRenderComplete]);
 
   return (
     <section className="trending-shows">
       <div className="container-fluid">
-        <h2>Trending Animation Movies</h2>
+        <h1>Trending</h1>
         <div className="row">
           {trendingMovies.slice(0, 10).map((movie, index) => (
             <TrendingCard

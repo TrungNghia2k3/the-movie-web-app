@@ -1,8 +1,15 @@
 import genres from "../../assets/data/genres.js";
 import { Link } from "react-router";
 import "./PopularGenres.css";
+import { useEffect } from "react";
 
-const PopularGenres = () => {
+const PopularGenres = ({ onRenderComplete }) => {
+  useEffect(() => {
+    if (onRenderComplete) {
+      onRenderComplete();
+    }
+  }, [onRenderComplete]);
+
   return (
     <div className="popular-genres">
       <div className="container-fluid">
@@ -16,7 +23,7 @@ const PopularGenres = () => {
           </div>
           <div className="col-xl-8">
             <div className="row">
-              {genres.map((genre) => (
+              {genres.slice(0, 8).map((genre) => (
                 <div className="col-lg-3 col-md-4 col-6 my-4" key={genre.id}>
                   <div className="genre-card">
                     <Link to={`/genre/${genre.id}`} className="genre-link">

@@ -98,10 +98,10 @@ export const getMoviesWithGenres = async (genreId = "28") => {
 // Get Upcoming Movies
 export const getUpcomingMovies = async () => {
   const today = new Date();
-  const thirtyDaysLater = new Date(Date.now() + 3 * 30 * 24 * 60 * 60 * 1000); // 3 month
+  const threeMonthsLater = new Date(Date.now() + 3 * 30 * 24 * 60 * 60 * 1000); // 3 month
 
   const formattedToday = today.toISOString().split("T")[0]; // YYYY-MM-DD
-  const formattedMaxDate = thirtyDaysLater.toISOString().split("T")[0];
+  const formattedMaxDate = threeMonthsLater.toISOString().split("T")[0];
 
   try {
     const response = await axios.get("/discover/movie", {
@@ -132,6 +132,56 @@ export const getMovieCredits = async (movieId) => {
     return response.data;
   } catch (error) {
     console.error("Error fetching movie credits:", error);
+    throw error;
+  }
+};
+
+// Get All Genres
+export const getAllGenres = async () => {
+  try {
+    const response = await axios.get("/genre/movie/list");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching all genres:", error);
+    throw error;
+  }
+};
+
+// Discover Movies
+export const getDiscoverMovies = async (filters = {}) => {
+  try {
+    console.log(filters);
+
+    const response = await axios.get("/discover/movie", {
+      params: {
+        language: filters.language || "en-US", // select only 1 (data type string)
+        page: filters.page || 1, // select only 1 (data type int32)
+        sort_by: filters.sort_by || "popularity.desc", // select only 1 (data type string)
+        vote_average_gte: filters.vote_average_gte, // select only 1 (data type float)
+        with_genres: filters.with_genres, // select more than 1 (data type string)
+        with_origin_country: filters.with_origin_country, // select only 1 (data type string)
+        with_release_type: filters.with_release_type, // select more than 1 (data type int32)
+        primary_release_year: filters.primary_release_year, // select only 1 (data type int32)
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching discover movies:", error);
+    throw error;
+  }
+};
+
+// Search by keyword
+export const searchMovies = async (keyword) => {
+  try {
+    const response = await axios.get("/search/movie", {
+      params: {
+        query: keyword,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error searching movies:", error);
     throw error;
   }
 };

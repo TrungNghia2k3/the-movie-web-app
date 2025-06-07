@@ -45,3 +45,8 @@ API used
 - The Movie Database (TMDb)
 
 - The techniques for making sliders and conveyors are still familiar and not smooth.
+
+Clone this project:
+Visual:https://demo.templatemonster.com/demo/349197.html
+
+Project for educational purposes only

@@ -1,0 +1,133 @@
+header {
+  width: 100%;
+  padding: 20px 0;
+}
+
+.dropdown-menu {
+  min-width: 280px;
+  border-radius: 15px;
+  padding: 10px 15px;
+}
+
+.dropdown-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 0px;
+}
+
+.dropdown-item {
+  color: white;
+  font-weight: 500;
+  padding: 8px;
+  text-align: left;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.nav-item .nav-link {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.nav-item .nav-link:hover {
+  color: #58dda3;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+}
+
+.navbar-nav .dropdown-toggle::after {
+  display: none !important;
+}
+
+.dropdown-item:focus,
+.dropdown-item:hover {
+  background-color: transparent;
+  color: #58dda3;
+}
+
+.navbar-brand img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 200px;
+  justify-content: flex-end;
+
+  .search-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  .search-icon {
+    color: white;
+    cursor: pointer;
+    flex-shrink: 0;
+    z-index: 2;
+  }
+
+  .search-icon:hover {
+    color: #58dda3;
+  }
+
+  .search-input-wrapper {
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    max-width: 0;
+    overflow: hidden;
+    transition: max-width 0.4s ease, opacity 0.4s ease;
+    margin-left: 10px;
+    flex-shrink: 0;
+
+    input {
+      background: transparent;
+      border-radius: 0;
+      border: none;
+      border-bottom: 1px solid #fff;
+      color: #fff;
+      outline: none;
+      padding: 0.2rem 0.5rem;
+      width: 360px;
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 1.5rem;
+      }
+    }
+
+    .form-control:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .close-icon {
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+  }
+
+  &.active {
+    .search-input-wrapper {
+      max-width: 400px;
+      opacity: 1;
+    }
+  }
+}
+
+.badge {
+  top: 5px;
+  right: 5px;
+  font-size: 0.6rem;
+}

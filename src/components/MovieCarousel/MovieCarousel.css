@@ -1,11 +1,10 @@
 .movie-carousel {
-  padding: 20px;
+  padding: 0px 56px;
+  margin-bottom: 80px;
 }
 
 .carousel-title {
   color: #fff;
-  font-size: 2rem;
-  padding-left: 72px;
 }
 
 .nav-buttons {

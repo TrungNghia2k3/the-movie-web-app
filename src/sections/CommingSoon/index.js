@@ -12,7 +12,7 @@ import Badge from "../../components/Badge";
 import Button from "../../components/Button";
 import WatchTrailerModal from "../../components/WatchTrailerModal";
 
-const CommingSoon = () => {
+const CommingSoon = ({onRenderComplete}) => {
   const [highlightMovie, setHighlightMovie] = useState(null);
   const [countdown, setCountdown] = useState({
     days: "00",
@@ -70,6 +70,13 @@ const CommingSoon = () => {
 
     fetchUpcomingMovieData();
   }, []);
+
+  // Gọi onRenderComplete khi component đã render xong và có data
+  useEffect(() => {
+    if (highlightMovie && onRenderComplete) {
+      onRenderComplete();
+    }
+  }, [highlightMovie, onRenderComplete]); // Chỉ depend vào highlightMovie
 
   // Countdown logic
   useEffect(() => {
@@ -129,7 +136,7 @@ const CommingSoon = () => {
               <h4>Coming Soon</h4>
             </div>
             <div className="coming-soon-content text-white">
-              <h1>{highlightMovie.title}</h1>
+              <h1 className="mt-5">{highlightMovie.title}</h1>
               <p>{highlightMovie.overview}</p>
 
               <div className="badge-list my-2">
@@ -171,29 +178,29 @@ const CommingSoon = () => {
                 />
               </div>
 
-              <div className="countdown-timer d-flex gap-4">
-                <div className="time-block text-center">
-                  <div className="time-value">{countdown.days}</div>
-                  <div className="time-label">Days</div>
-                </div>
-                <div className="time-block text-center">
-                  <div className="time-value">{countdown.hours}</div>
-                  <div className="time-label">Hrs</div>
-                </div>
-                <div className="time-block text-center">
+              <ul className="p-0 countdown-timer d-flex gap-4">
+                <li className="time-block text-center">
+                  <span className="time-value">{countdown.days}</span>
+                  <span className="time-label">Days</span>
+                </li>
+                <li className="time-block text-center">
+                  <span className="time-value">{countdown.hours}</span>
+                  <span className="time-label">Hrs</span>
+                </li>
+                <li className="time-block text-center">
                   <div className="time-value">{countdown.minutes}</div>
-                  <div className="time-label">Min</div>
-                </div>
-                <div className="time-block text-center">
+                  <span className="time-label">Min</span>
+                </li>
+                <li className="time-block text-center">
                   <div className="time-value">{countdown.seconds}</div>
-                  <div className="time-label">Sec</div>
-                </div>
-              </div>
+                  <span className="time-label">Sec</span>
+                </li>
+              </ul>
             </div>
           </div>
           <div className="col-xl-8 col-lg-6">
             <img
-              className="img-fluid w-100"
+              className="img-fluid w-100 rounded-5 p-4"
               src={BACKDROP_W1280_URL + highlightMovie.backdrop_path}
               alt={highlightMovie.title}
             />
