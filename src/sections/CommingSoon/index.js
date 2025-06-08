@@ -120,8 +120,7 @@ const CommingSoon = ({onRenderComplete}) => {
 
   return (
     <section className="coming-soon position-relative overflow-hidden">
-      <div
-        className="blur-background"
+      <div className="blur-background"
         style={{
           backgroundImage: `url(${
             BACKDROP_W1280_URL + highlightMovie.backdrop_path

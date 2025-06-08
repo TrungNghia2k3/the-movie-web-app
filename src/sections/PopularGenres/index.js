@@ -26,7 +26,7 @@ const PopularGenres = ({ onRenderComplete }) => {
               {genres.slice(0, 8).map((genre) => (
                 <div className="col-lg-3 col-md-4 col-6 my-4" key={genre.id}>
                   <div className="genre-card">
-                    <Link to={`/genre/${genre.id}`} className="genre-link">
+                    <Link to={`/movie-listing?genreId=${genre.id}`} className="genre-link">
                       <img src={genre.image} alt="" />
                       <h4>{genre.name}</h4>
                     </Link>

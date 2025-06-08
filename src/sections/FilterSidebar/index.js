@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import genres from "../../assets/data/genres";
 import countries from "../../assets/data/countries";
 import sorts from "../../assets/data/sorts";
 import types from "../../assets/data/types";
 import languages from "../../assets/data/languages";
 import DropdownFilter from "../../components/DropdownFilter";
+import {
+  createLookupMaps,
+  convertFiltersForAPIOptimized,
+} from "../../utils/filterConverter";
 
 import "./FilterSidebar.css";
 
@@ -13,15 +17,22 @@ const FilterSidebar = ({ onFilterChange }) => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [selectedLetter, setSelectedLetter] = useState("All");
 
+  // UI state - giữ nguyên format dễ đọc cho UI
   const [filters, setFilters] = useState({
-    genre: [], // select more than 1
-    country: [], // select only 1
-    year: [], // select only 1
-    type: [], // select more than 1
-    language: [], // select only 1
-    rating: [], // select only 1
-    sortBy: [], // select only 1
+    genre: [], // select more than 1 (display: string[], API: int32[])
+    country: [], // select only 1 (display: string[], API: string[])
+    year: [], // select only 1 (display: string[], API: int32[])
+    type: [], // select more than 1 (display: string[], API: int32[])
+    language: [], // select only 1 (display: string[], API: string[])
+    rating: [], // select only 1 (display: string[], API: float[])
+    sortBy: [], // select only 1 (display: string[], API: string[])
   });
+
+  // Tạo lookup maps cho performance tốt hơn (chỉ tạo 1 lần)
+  const lookupMaps = useMemo(
+    () => createLookupMaps({ genres, countries, types, languages, sorts }),
+    []
+  );
 
   const filterOptions = {
     genre: genres.map((genre) => genre.name),
@@ -75,16 +86,29 @@ const FilterSidebar = ({ onFilterChange }) => {
     }
 
     setFilters(newFilters);
-    if (onFilterChange) {
-      onFilterChange({ ...newFilters, letter: selectedLetter });
-    }
+
+    // ❌ REMOVED: Không gọi onFilterChange ở đây nữa
+    // Convert và gửi API-ready filters
+    // if (onFilterChange) {
+    //   const apiFilters = convertFiltersForAPIOptimized(
+    //     { ...newFilters, letter: selectedLetter },
+    //     lookupMaps
+    //   );
+    //   onFilterChange(apiFilters);
+    // }
   };
 
   const handleLetterFilter = (letter) => {
     setSelectedLetter(letter);
-    if (onFilterChange) {
-      onFilterChange({ ...filters, letter });
-    }
+
+    // ❌ REMOVED: Không gọi onFilterChange ở đây nữa
+    // if (onFilterChange) {
+    //   const apiFilters = convertFiltersForAPIOptimized(
+    //     { ...filters, letter },
+    //     lookupMaps
+    //   );
+    //   onFilterChange(apiFilters);
+    // }
   };
 
   const clearAllFilters = () => {
@@ -99,8 +123,10 @@ const FilterSidebar = ({ onFilterChange }) => {
     };
     setFilters(clearedFilters);
     setSelectedLetter("All");
+
     if (onFilterChange) {
-      onFilterChange({ ...clearedFilters, letter: "All" });
+      // Gửi empty object khi clear all
+      onFilterChange({});
     }
   };
 
@@ -109,6 +135,17 @@ const FilterSidebar = ({ onFilterChange }) => {
       Object.values(filters).reduce((acc, curr) => acc + curr.length, 0) +
       (selectedLetter !== "All" ? 1 : 0)
     );
+  };
+
+  const handleApplyFilter = () => {
+    if (onFilterChange) {
+      const apiFilters = convertFiltersForAPIOptimized(
+        { ...filters, letter: selectedLetter },
+        lookupMaps
+      );
+      onFilterChange(apiFilters);
+    }
+    setActiveDropdown(null);
   };
 
   return (
@@ -174,15 +211,7 @@ const FilterSidebar = ({ onFilterChange }) => {
       </ul>
 
       {/* Apply Filter Button */}
-      <button
-        className="cus-btn"
-        onClick={() => {
-          if (onFilterChange) {
-            onFilterChange({ ...filters, letter: selectedLetter });
-          }
-          setActiveDropdown(null);
-        }}
-      >
+      <button className="cus-btn" onClick={handleApplyFilter}>
         <i className="bi bi-funnel"></i>
         Filter
       </button>

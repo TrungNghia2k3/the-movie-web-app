@@ -3,22 +3,38 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/styles/App.css";
 import { BrowserRouter as Router } from "react-router";
-import AppRoutes from "./routes/AppRoutes";
+import AppRoutesWrapper from "./routes/AppRoutesWrapper";
 import Header from "./sections/Header";
-import Footer from "./sections/Footer";
 
 function App() {
-  const [isAppRoutesLoaded, setIsAppRoutesLoaded] = useState(false);
+  const [routeLoadingStates, setRouteLoadingStates] = useState({});
+  
+  console.log("Route loading states: ", routeLoadingStates);
 
-  const handleAppRoutesComplete = useCallback(() => {
-    setIsAppRoutesLoaded(true);
+  const handleRouteComplete = useCallback((routePath) => {
+    console.log("Route completed:", routePath);
+    setRouteLoadingStates(prev => ({
+      ...prev,
+      [routePath]: true
+    }));
+  }, []);
+
+  const handleRouteStart = useCallback((routePath) => {
+    console.log("Route started:", routePath);
+    setRouteLoadingStates(prev => ({
+      ...prev,
+      [routePath]: false
+    }));
   }, []);
 
   return (
     <Router>
       <Header />
-      <AppRoutes onRenderComplete={handleAppRoutesComplete} />
-      {isAppRoutesLoaded && <Footer />}
+      <AppRoutesWrapper 
+        onRouteComplete={handleRouteComplete}
+        onRouteStart={handleRouteStart}
+        routeLoadingStates={routeLoadingStates}
+      />
     </Router>
   );
 }

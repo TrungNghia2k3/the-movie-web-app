@@ -15,6 +15,7 @@ const Button = ({
     outline ? `btn-outline-${variant}` : `btn-${variant}`,
     size && `btn-${size}`,
     disabled && "disabled",
+    "rounded-3",
   ]
     .filter(Boolean)
     .join(" ");
@@ -22,7 +23,7 @@ const Button = ({
   return (
     <Link to={link} onClick={onClick}>
       <button type="button" className={classNames} disabled={disabled}>
-        <span className="d-inline-flex align-items-center gap-1">
+        <span className="d-inline-flex align-items-center fw-medium gap-1">
           {icon && <i className={`${icon} fs-4`}></i>}
           <span className="text-nowrap">{text}</span>
         </span>

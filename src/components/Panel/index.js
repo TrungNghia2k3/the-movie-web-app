@@ -44,8 +44,10 @@ const Panel = ({ id, image, title, isActive, onClick }) => {
       </div>
 
       <div className="runtime d-flex gap-2">
-        <h6 className=" fw-bold">Movie</h6>
-        <h6 className=" fw-bold">{convertMinutesToHourMinute(movieDetail?.runtime)}</h6>
+        <h6 className=" fw-bold fs-5">Movie</h6>
+        <h6 className=" fw-bold fs-5">
+          {convertMinutesToHourMinute(movieDetail?.runtime)}
+        </h6>
       </div>
 
       <div className="button-list d-flex gap-2">

@@ -1,37 +1,32 @@
 import React, { useEffect, useState } from "react";
 import MovieCard from "../../components/MovieCard";
 import {
-  getRecentlyReleasedMovies,
+  getCollectionDetail,
 } from "../../services/api";
-import "./RecentlyReleased.css";
+import "./Collection.css";
 import { getBackdropImageStyle } from "../../utils/imageHelpers";
 
-const RecentlyReleased = ({ onRenderComplete }) => {
-  const [recentlyReleasedMovies, setRecentlyReleasedMovies] = useState([]);
+const Collection = ({ id }) => {
+  const [collectionMovies, setCollectionMovies] = useState([]);
 
   useEffect(() => {
-    const fetchRecentlyReleasedMovies = async () => {
-      const movies = await getRecentlyReleasedMovies();
-      setRecentlyReleasedMovies(movies);
-
-      // Call onRenderComplete callback
-      if (onRenderComplete) {
-        onRenderComplete();
-      }
+    const fetchCollectionMovies = async () => {
+      const movies = await getCollectionDetail(id);
+      setCollectionMovies(movies);
     };
-    fetchRecentlyReleasedMovies();
-  }, [onRenderComplete]);
+    fetchCollectionMovies();
+  }, [id]);
 
-  if (!recentlyReleasedMovies.length) {
+  if (!collectionMovies.length) {
     return null;
   }
 
   return (
-    <section className="recently-released">
+    <section className="collection">
       <div className="container-fluid">
-        <h1>Recently Released</h1>
+        <h1>Collection</h1>
         <div className="row">
-          {recentlyReleasedMovies.slice(0, 8).map((movie) => (
+          {collectionMovies.slice(0, 8).map((movie) => (
             <div
               className="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-4"
               key={movie.id}
@@ -49,4 +44,4 @@ const RecentlyReleased = ({ onRenderComplete }) => {
   );
 };
 
-export default RecentlyReleased;
+export default Collection;
