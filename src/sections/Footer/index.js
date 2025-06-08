@@ -1,10 +1,10 @@
 import React from "react";
-import "./Footer.css";
 import logo from "../../assets/images/logo.png";
-import reddit from "../../assets/images/media/reddit.png";
 import discord from "../../assets/images/media/discord.png";
-import instagram from "../../assets/images/media/instagram.png";
 import facebook from "../../assets/images/media/facebook.png";
+import instagram from "../../assets/images/media/instagram.png";
+import reddit from "../../assets/images/media/reddit.png";
+import "./Footer.css";
 
 const Footer = () => {
   return (

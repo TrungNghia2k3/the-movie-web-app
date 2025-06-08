@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Panel from "../../components/Panel";
-import { getActionMovies } from "../../services/api";
-import { BACKDROP_ORIGINAL_URL } from "../../services/api";
+import { BACKDROP_ORIGINAL_URL, getActionMovies } from "../../services/api";
 
 const Hero = ({ onRenderComplete }) => {
   const [activeIndex, setActiveIndex] = useState(3);

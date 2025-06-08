@@ -3,8 +3,8 @@ import MovieCard from "../../components/MovieCard";
 import {
   getCollectionDetail,
 } from "../../services/api";
-import "./Collection.css";
 import { getBackdropImageStyle } from "../../utils/imageHelpers";
+import "./Collection.css";
 
 const Collection = ({ id }) => {
   const [collectionMovies, setCollectionMovies] = useState([]);

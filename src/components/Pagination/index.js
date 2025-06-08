@@ -14,28 +14,28 @@ const Pagination = ({
 
     setIsLoading(true);
 
-    // Delay để tăng UX
+    // Delay
     setTimeout(async () => {
       await onPageChange(page);
       setIsLoading(false);
     }, loadingDelay);
   };
 
-  // Tính toán 5 trang hiển thị
+  // Calculate visible pages
   const getVisiblePages = () => {
     const pages = [];
 
     if (totalPages <= 5) {
-      // Nếu tổng số trang <= 5, hiển thị tất cả
+      // If total pages <= 5, show all
       for (let i = 1; i <= totalPages; i++) {
         pages.push(i);
       }
     } else {
-      // Nếu > 5 trang, tạo sliding window
+      // If > 5 pages, create sliding window
       let start = Math.max(1, currentPage - 2);
       let end = Math.min(totalPages, start + 4);
 
-      // Điều chỉnh nếu gần cuối
+      // Adjust if close to end
       if (end - start < 4) {
         start = Math.max(1, end - 4);
       }

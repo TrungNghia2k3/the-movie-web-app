@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import MovieCarousel from "../../components/MovieCarousel";
+import WatchTrailerModal from "../../components/WatchTrailerModal";
+import Collection from "../../sections/Collection";
 import {
+  BACKDROP_W1280_URL,
   getMovieDetail,
   getMovieTrailer,
   getRecommendMovies,
-  BACKDROP_W1280_URL,
 } from "../../services/api";
 import {
-  convertMinutesToHourMinute,
   convertDateToLocaleDateString,
+  convertMinutesToHourMinute,
 } from "../../utils/helpers";
-import WatchTrailerModal from "../../components/WatchTrailerModal";
 import "./MovieDetailPage.css";
-import Collection from "../../sections/Collection";
-import MovieCarousel from "../../components/MovieCarousel";
 
 const MovieDetailPage = ({ onRenderComplete }) => {
   const { id } = useParams();

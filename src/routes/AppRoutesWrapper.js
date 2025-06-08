@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useLocation } from "react-router";
-import AppRoutes from "./AppRoutes";
 import Footer from "../sections/Footer";
+import AppRoutes from "./AppRoutes";
 
 const AppRoutesWrapper = ({
   onRouteComplete,
@@ -11,11 +11,11 @@ const AppRoutesWrapper = ({
   const location = useLocation();
   const [currentPath, setCurrentPath] = useState(location.pathname);
 
-  // Kiểm tra route hiện tại đã load xong chưa
+  // Check route is loaded
   const isCurrentRouteLoaded = routeLoadingStates[location.pathname] === true;
 
   useEffect(() => {
-    // Khi route thay đổi
+    // When route changes
     if (location.pathname !== currentPath) {
       console.log("Route changed from", currentPath, "to", location.pathname);
 

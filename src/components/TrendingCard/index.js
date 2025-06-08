@@ -1,9 +1,8 @@
-import React from "react";
-import "./TrendingCard.css";
-import Button from "../Button";
+import React, { useState } from "react";
 import { getMovieTrailer } from "../../services/api";
-import { useState } from "react";
+import Button from "../Button";
 import WatchTrailerModal from "../WatchTrailerModal";
+import "./TrendingCard.css";
 
 const TrendingCard = ({ id, number, trendingImage, title }) => {
   const [trailer, setTrailer] = useState(null);

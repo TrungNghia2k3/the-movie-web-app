@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Button from "../Button";
 import { getMovieDetail, getMovieTrailer } from "../../services/api";
+import { convertMinutesToHourMinute } from "../../utils/helpers";
+import Badge from "../Badge";
+import Button from "../Button";
 import WatchTrailerModal from "../WatchTrailerModal";
 import "./MovieCard.css";
-import Badge from "../Badge";
-import { convertMinutesToHourMinute } from "../../utils/helpers";
 
 const MovieCard = ({ id, image, title }) => {
   const [trailer, setTrailer] = useState(null);

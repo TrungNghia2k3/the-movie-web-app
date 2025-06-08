@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import TrendingCard from "../../components/TrendingCard";
-import { getMovieTrending } from "../../services/api";
-import { BACKDROP_W780_URL } from "../../services/api";
+import { BACKDROP_W780_URL, getMovieTrending } from "../../services/api";
 import "./TrendingShows.css";
 
 const TrendingShows = ({ onRenderComplete }) => {

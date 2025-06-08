@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
+import Badge from "../../components/Badge";
+import Button from "../../components/Button";
+import WatchTrailerModal from "../../components/WatchTrailerModal";
 import {
+  BACKDROP_W1280_URL,
+  getMovieCredits,
   getMovieDetail,
   getMovieTrailer,
-  getMovieCredits,
-  BACKDROP_W1280_URL,
   getUpcomingMovies,
 } from "../../services/api";
 import { convertMinutesToHourMinute } from "../../utils/helpers";
 import "./CommingSoon.css";
-import Badge from "../../components/Badge";
-import Button from "../../components/Button";
-import WatchTrailerModal from "../../components/WatchTrailerModal";
 
 const CommingSoon = ({onRenderComplete}) => {
   const [highlightMovie, setHighlightMovie] = useState(null);

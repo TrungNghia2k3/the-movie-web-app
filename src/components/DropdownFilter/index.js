@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./DropdownFilter.css";
 
 const DropdownFilter = ({
@@ -16,7 +16,7 @@ const DropdownFilter = ({
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
   const isActive = activeDropdown === category;
 
-  // Tính toán vị trí dropdown
+  // Calculate dropdown position
   useEffect(() => {
     if (isActive && buttonRef.current) {
       const rect = buttonRef.current.getBoundingClientRect();

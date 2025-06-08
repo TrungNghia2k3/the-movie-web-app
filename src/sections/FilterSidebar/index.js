@@ -1,13 +1,13 @@
-import React, { useState, useMemo } from "react";
-import genres from "../../assets/data/genres";
+import React, { useMemo, useState } from "react";
 import countries from "../../assets/data/countries";
+import genres from "../../assets/data/genres";
+import languages from "../../assets/data/languages";
 import sorts from "../../assets/data/sorts";
 import types from "../../assets/data/types";
-import languages from "../../assets/data/languages";
 import DropdownFilter from "../../components/DropdownFilter";
 import {
-  createLookupMaps,
   convertFiltersForAPIOptimized,
+  createLookupMaps,
 } from "../../utils/filterConverter";
 
 import "./FilterSidebar.css";

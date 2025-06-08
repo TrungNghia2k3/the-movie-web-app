@@ -1,7 +1,7 @@
-import genres from "../../assets/data/genres.js";
-import { Link } from "react-router";
-import "./PopularGenres.css";
 import { useEffect } from "react";
+import { Link } from "react-router";
+import genres from "../../assets/data/genres.js";
+import "./PopularGenres.css";
 
 const PopularGenres = ({ onRenderComplete }) => {
   useEffect(() => {

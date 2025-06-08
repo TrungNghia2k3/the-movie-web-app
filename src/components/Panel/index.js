@@ -1,10 +1,10 @@
-import "./Panel.css";
-import Button from "../Button";
-import { getMovieDetail, getMovieTrailer } from "../../services/api";
-import WatchTrailerModal from "../WatchTrailerModal";
 import { useEffect, useState } from "react";
-import Badge from "../Badge";
+import { getMovieDetail, getMovieTrailer } from "../../services/api";
 import { convertMinutesToHourMinute } from "../../utils/helpers";
+import Badge from "../Badge";
+import Button from "../Button";
+import WatchTrailerModal from "../WatchTrailerModal";
+import "./Panel.css";
 
 const Panel = ({ id, image, title, isActive, onClick }) => {
   const [trailer, setTrailer] = useState(null);

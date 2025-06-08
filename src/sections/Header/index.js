@@ -1,10 +1,10 @@
 import { useState } from "react";
-import "./Header.css";
+import { Link, useNavigate } from "react-router";
+import countries from "../../assets/data/countries";
+import genres from "../../assets/data/genres";
 import logo from "../../assets/images/logo.png";
 import user from "../../assets/images/user.png";
-import genres from "../../assets/data/genres";
-import countries from "../../assets/data/countries";
-import { Link, useNavigate } from "react-router";
+import "./Header.css";
 
 const Header = () => {
   const [searchActive, setSearchActive] = useState(false);

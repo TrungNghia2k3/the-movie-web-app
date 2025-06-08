@@ -3,8 +3,8 @@ import MovieCard from "../../components/MovieCard";
 import {
   getRecentlyReleasedMovies,
 } from "../../services/api";
-import "./RecentlyReleased.css";
 import { getBackdropImageStyle } from "../../utils/imageHelpers";
+import "./RecentlyReleased.css";
 
 const RecentlyReleased = ({ onRenderComplete }) => {
   const [recentlyReleasedMovies, setRecentlyReleasedMovies] = useState([]);

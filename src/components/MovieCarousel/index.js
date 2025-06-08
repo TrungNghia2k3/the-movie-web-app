@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MovieCard from "../../components/MovieCard";
-import "./MovieCarousel.css";
 import { BACKDROP_W780_URL } from "../../services/api";
+import "./MovieCarousel.css";
 
 const MovieCarousel = ({ title, movies, onRenderComplete }) => {
   const [startIndex, setStartIndex] = useState(0);
 
-  // Gọi onRenderComplete một lần khi component mount
+  // Call onRenderComplete once when component mounts
   useEffect(() => {
     if (onRenderComplete) {
       onRenderComplete();
     }
-  }, [onRenderComplete]); // Empty dependency array - chỉ chạy một lần khi mount
+  }, [onRenderComplete]); // Empty dependency array - runs only once when mounted
 
   const handlePrev = () => {
     setStartIndex((prev) => Math.max(prev - 1, 0));

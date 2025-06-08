@@ -1,8 +1,8 @@
-import React, { useState, useCallback } from "react";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./assets/styles/App.css";
+import React, { useCallback, useState } from "react";
 import { BrowserRouter as Router } from "react-router";
+import "./assets/styles/App.css";
 import AppRoutesWrapper from "./routes/AppRoutesWrapper";
 import Header from "./sections/Header";
 
