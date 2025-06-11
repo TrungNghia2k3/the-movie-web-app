@@ -36,7 +36,6 @@ Libraries Used
 - Axios
 - Bootstrap
 - Bootstrap Icons
-- Swiper
 - Web Vitals
 
 API used
