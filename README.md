@@ -36,7 +36,6 @@ Libraries Used
 - Axios
 - Bootstrap
 - Bootstrap Icons
-- React Router
 - Swiper
 - Web Vitals
 
