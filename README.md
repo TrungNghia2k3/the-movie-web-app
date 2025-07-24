@@ -165,4 +165,10 @@ This project demonstrates:
 
 ---
 
-**Educational Project** - Built for learning and demonstration purposes.
+## 📄 License
+Project for educational purposes only
+
+---
+
+## 🎨 Design Credits
+Based on Figma design: [E-commerce Website Template](https://demo.templatemonster.com/demo/349197.html)
