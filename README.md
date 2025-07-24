@@ -165,4 +165,9 @@ This project demonstrates:
 
 ---
 
+## 🌐 Live Demo
+Visit the live website: [Website](https://the-movie-web-app-nine.vercel.app/)
+
+---
+
 **Educational Project** - Built for learning and demonstration purposes.
