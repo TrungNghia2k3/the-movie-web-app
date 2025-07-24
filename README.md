@@ -37,7 +37,6 @@ Libraries Used
 - Bootstrap
 - Bootstrap Icons
 - React Router
-- Swiper
 - Web Vitals
 
 API used
