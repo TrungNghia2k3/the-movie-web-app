@@ -7,6 +7,7 @@ import "./TrendingCard.css";
 const TrendingCard = ({ id, number, trendingImage, title }) => {
   const [trailer, setTrailer] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleWatchTrailerClick = async () => {
     const trailers = await getMovieTrailer(id);
@@ -15,11 +16,17 @@ const TrendingCard = ({ id, number, trendingImage, title }) => {
     setShowModal(true);
   };
 
+  const handleImageTouch = () => {
+    setIsHovered(!isHovered);
+  };
+
   return (
-    <div className="col-xl-6 ">
+
+    <div className="col-xl-6 p-0">
       <div className="trend-block">
         <div className="row">
-          <div className="col-sm-6 pe-0">
+          {/* Text Block */}
+          <div className="col-sm-6 p-0">
             <div className="text">
               <h4>TRENDING</h4>
               <h2 style={{ backgroundImage: `url(${trendingImage})` }}>
@@ -27,10 +34,20 @@ const TrendingCard = ({ id, number, trendingImage, title }) => {
               </h2>
             </div>
           </div>
-          <div className="col-sm-6 ps-0">
-            <div className="img-block">
+
+          {/* Image Block */}
+          <div className="col-sm-6 p-0">
+            <div 
+              className={`img-block ${isHovered ? 'hovered' : ''}`}
+              onClick={handleImageTouch}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
               <img src={trendingImage} alt="" />
+              {/* Overlay */}
               <div className="overlay"></div>
+
+              {/* Button Block */}
               <div className="btn-block">
                 <Button
                   icon="bi bi-play"

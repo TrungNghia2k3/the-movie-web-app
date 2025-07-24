@@ -1,9 +1,15 @@
 .trend-block {
   background-color: #1b1b1b;
   border-radius: 25px;
-  margin-bottom: 24px;
+  margin: 12px;
   position: relative;
   overflow: hidden;
+  min-height: 180px;
+}
+
+.trend-block .row {
+  height: 100%;
+  margin: 0;
 }
 
 .trend-block .text {
@@ -13,6 +19,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
+  padding: 20px;
 }
 
 .trend-block .text h4 {
@@ -42,10 +49,13 @@
 .img-block {
   position: relative;
   overflow: hidden;
+  height: 100%;
+  min-height: 180px;
 
   img {
     width: 100%;
     height: 100%;
+    min-height: 180px;
     object-fit: cover;
     object-position: center;
   }
@@ -75,5 +85,162 @@
   &:hover .btn-block {
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+}
+
+/* Hide desktop filter panel on mobile devices */
+@media (max-width: 575.98px) {
+  .trend-block {
+    margin-bottom: 20px;
+    min-height: 180px;
+    border-radius: 20px;
+  }
+
+  .trend-block .row {
+    height: 100%;
+    min-height: 180px;
+  }
+
+  .trend-block .text {
+    min-height: 180px;
+    border-radius: 20px;
+    display: flex;
+  }
+
+  .trend-block .text h4 {
+    transform: none;
+    margin: 0 0 5px 0;
+    font-size: clamp(16px, 5.25vw, 18px);
+    font-weight: 600;
+    letter-spacing: 1px;
+    rotate: -90deg;
+  }
+
+  .trend-block .text h2 {
+    font-size: 160px;
+    margin-top: 10px;
+  }
+
+  .img-block {
+    min-height: 180px;
+    overflow: hidden;
+    border-radius: 20px;
+  }
+
+  .img-block img {
+    min-height: 180px;
+    border-radius: 20px;
+  }
+
+  /* Full overlay coverage on mobile */
+  .img-block .overlay {
+    opacity: 0;
+    transition: opacity 0.3s;
+    border-radius: 0 20px 20px 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  /* Keep desktop hover effect - button slides from left to right */
+  .img-block .btn-block {
+    position: absolute;
+    top: 50%;
+    left: -100%;
+    transform: translateY(-50%);
+    transition: left 0.4s ease;
+    z-index: 2;
+  }
+
+  .img-block .btn-block .btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  /* Trigger hover effect on mobile touch */
+  .img-block:hover .overlay,
+  .img-block:active .overlay,
+  .img-block.hovered .overlay {
+    opacity: 1;
+  }
+
+  .img-block:hover .btn-block,
+  .img-block:active .btn-block,
+  .img-block.hovered .btn-block {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .trend-block {
+    margin-bottom: 24px;
+    min-height: 220px;
+    border-radius: 22px;
+  }
+
+  .trend-block .row {
+    height: 100%;
+    min-height: 220px;
+  }
+
+  .trend-block .text {
+    min-height: 220px;
+    padding: 20px 15px;
+  }
+
+  .trend-block .text h2 {
+    font-size: clamp(70px, 10vw, 130px);
+  }
+
+  .img-block {
+    min-height: 220px;
+  }
+
+  .img-block img {
+    min-height: 220px;
+  }
+}
+
+/* Large tablet / small desktop */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .trend-block {
+    margin-bottom: 26px;
+    min-height: 260px;
+  }
+
+  .trend-block .row {
+    height: 100%;
+    min-height: 260px;
+  }
+
+  .trend-block .text {
+    min-height: 260px;
+    padding: 25px 20px;
+  }
+
+  .img-block {
+    min-height: 260px;
+  }
+
+  .img-block img {
+    min-height: 260px;
+  }
+}
+
+/* Medium Devices (≥768px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .trend-block .text h2 {
+    font-size: clamp(150px, 8vw, 150px);
+  }
+  
+}
+
+/* Large Devices (≥992px) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .trend-block .text h2 {
+    font-size: clamp(180px, 6vw, 180px);
   }
 }

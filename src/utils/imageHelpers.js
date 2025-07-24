@@ -1,5 +1,3 @@
-// utils/imageHelpers.js
-
 // Constants
 const BACKDROP_W780_URL = "https://image.tmdb.org/t/p/w780";
 const POSTER_W500_URL = "https://image.tmdb.org/t/p/w500";

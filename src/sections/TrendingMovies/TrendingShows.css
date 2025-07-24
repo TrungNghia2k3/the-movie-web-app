@@ -5,3 +5,10 @@
 .trending-shows h1 {
     margin-bottom: 40px;
 }
+
+/* Hide desktop filter panel on mobile devices */
+@media (max-width: 575.98px) {
+  .trending-shows {
+    padding: 80px 1.2rem;
+  }
+}

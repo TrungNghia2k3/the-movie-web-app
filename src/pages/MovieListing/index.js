@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
-import MovieCard from "../components/MovieCard";
-import Pagination from "../components/Pagination";
-import FilterSidebar from "../sections/FilterSidebar";
-import { BACKDROP_W780_URL, getDiscoverMovies, searchMovies } from "../services/api";
+import MovieCard from "../../components/MovieCard";
+import Pagination from "../../components/Pagination";
+import FilterSidebar from "../../sections/FilterSidebar";
+import { BACKDROP_W780_URL, getDiscoverMovies, searchMovies } from "../../services/api";
 import {
   buildApiFilters,
   buildDiscoverParams,
   buildSearchQuery,
   shouldUseSearchAPI,
-} from "../utils/movieFilters";
+} from "../../utils/movieFilters";
+
+import "./MovieListing.css";
 
 const MovieListing = ({ onRenderComplete }) => {
   const [searchParams] = useSearchParams();
@@ -27,6 +29,27 @@ const MovieListing = ({ onRenderComplete }) => {
 
   // State to save filters from FilterSidebar
   const [activeFilters, setActiveFilters] = useState({});
+
+  // Filter function to ensure movies have all necessary information
+  const isMovieComplete = (movie) => {
+    return (
+      movie &&
+      movie.id &&
+      movie.title &&
+      movie.backdrop_path && // Must have image
+      movie.backdrop_path !== null &&
+      movie.backdrop_path !== "" &&
+      typeof movie.backdrop_path === 'string' && // Must be a string, not object
+      movie.backdrop_path.length > 0 &&
+      movie.backdrop_path !== "[object Object]" && // Filter out exact [object Object]
+      !movie.backdrop_path.includes('[object Object]') && // Filter out [object Object] substring
+      movie.backdrop_path.startsWith('/') && // Must be a valid path starting with /
+      movie.overview && // Must have overview
+      movie.overview !== "" &&
+      movie.release_date && // Must have release date
+      movie.release_date !== ""
+    );
+  };
 
   const handleFilterChange = (filters) => {
     console.log("Received filters:", filters);
@@ -76,7 +99,10 @@ const MovieListing = ({ onRenderComplete }) => {
           data = await getDiscoverMovies(discoverParams);
         }
 
-        setMovies(data.results || []);
+        // Filter movies to only include those with complete information
+        const completeMovies = (data.results || []).filter(isMovieComplete);
+        
+        setMovies(completeMovies);
         setCurrentPage(data.page || 1);
         setTotalPages(data.total_pages || 1);
       } catch (error) {
@@ -123,13 +149,13 @@ const MovieListing = ({ onRenderComplete }) => {
   }
 
   return (
-    <div className="listing-container" style={{ padding: "80px" }}>
+    <div className="listing-container">
       <div className="container-fluid">
         <div className="row">
-          <div className="col-xl-3 col-lg-4 col-md-5">
+          <div className="col-xl-3 col-lg-12 col-md-12">
             <FilterSidebar onFilterChange={handleFilterChange} />
           </div>
-          <div className="col-xl-9 col-lg-8 col-md-7">
+          <div className="col-xl-9 col-lg-12 col-md-12">
             {/* Show current filter info */}
             <div className="mb-3">
               <p className="text-muted">

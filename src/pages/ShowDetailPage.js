@@ -5,9 +5,9 @@ const ShowDetailPage = () => {
     const { id } = useParams();
     return (
         <div>
-            Chi tiết show có ID: {id}
+            Show detail page with ID: {id}
 
-            <Link to="/movie/123">Xem phim</Link>
+            <Link to="/movie/123">Movie detail page</Link>
         </div>
     );
 };

@@ -39,3 +39,70 @@
 .movie-item {
   flex: 1 0 calc(25% - 1rem);
 }
+
+/* Mobile responsive styles */
+@media (max-width: 575.98px) {
+  .movie-carousel {
+    padding: 0px 1.2rem;
+    margin-top: 80px;
+    /* Extra space for hover effect */
+  }
+
+  .movie-list {
+    overflow: visible;
+    /* Allow hover effect to show */
+    padding-top: 40px;
+  }
+
+  .movie-item {
+    flex: 1 0 100%;
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .nav-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
+  }
+
+  .carousel-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* Medium Devices (≥768px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .movie-carousel {
+    padding: 0px 2rem;
+    margin-top: 120px;
+    /* Extra space for hover effect */
+  }
+
+  .movie-list {
+    padding-top: 120px;
+    /* Space for hover content */
+  }
+
+  .movie-item {
+    flex: 1 0 calc(50% - 0.5rem);
+  }
+}
+
+/* Large Devices (≥992px) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .movie-carousel {
+    padding: 0px 2rem;
+    margin-top: 120px;
+    /* Extra space for hover effect */
+  }
+
+  .movie-list {
+    padding-top: 120px;
+    /* Space for hover content */
+  }
+
+  .movie-item {
+    flex: 1 0 calc(50% - 0.5rem);
+  }
+}

@@ -108,7 +108,7 @@ export const getUpcomingMovies = async () => {
       params: {
         language: "en-US",
         region: "US",
-        sort_by: "primary_release_date.desc", // sort theo ngày phát hành tăng dần
+        sort_by: "primary_release_date.desc", // sort by release date descending
         include_adult: false,
         include_video: false,
         with_release_type: "2|3", // theatrical, premiere
@@ -170,7 +170,7 @@ export const getCollectionDetail = async (collectionId) => {
   }
 };
 
-// Updated API functions với proper parameter mapping
+// Updated API functions with proper parameter mapping
 export const getDiscoverMovies = async (filters = {}) => {
   try {
     console.log("Discover API filters:", filters);
@@ -194,7 +194,7 @@ export const getDiscoverMovies = async (filters = {}) => {
   }
 };
 
-// Search by keyword hoặc letter
+// Search by keyword or letter
 export const searchMovies = async (query, page = 1) => {
   try {
     console.log("Search API query:", query, "page:", page);
@@ -212,22 +212,22 @@ export const searchMovies = async (query, page = 1) => {
   }
 };
 
-// Helper function để search movies theo letter (alphabet filter)
+// Helper function to search movies by letter (alphabet filter)
 export const searchMoviesByLetter = async (letter, page = 1) => {
   try {
-    // TMDB không có direct alphabet search,
-    // nhưng có thể dùng một số workaround:
+    // TMDB does not have direct alphabet search,
+    // but can use some workarounds:
 
     if (letter === "All") {
-      // Fallback to discover với popular sort
+      // Fallback to discover with popular sort
       return await getDiscoverMovies({
         page: page,
         sort_by: "popularity.desc",
       });
     }
 
-    // Strategy 1: Search với letter làm keyword
-    // Không ideal nhưng là cách tốt nhất với TMDB API hiện tại
+    // Strategy 1: Search with letter as keyword
+    // Not ideal but the best way with TMDB API currently
     const response = await axios.get("/search/movie", {
       params: {
         query: letter,

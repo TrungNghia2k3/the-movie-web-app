@@ -11,7 +11,7 @@ const HomePage = ({ onRenderComplete }) => {
   const [animationMovies, setAnimationMovies] = useState([]);
   const [horrorMovies, setHorrorMovies] = useState([]);
 
-  // States để theo dõi trạng thái render của từng component
+  // States to track the render status of each component
   const [renderStates, setRenderStates] = useState({
     hero: false,
     trendingMovies: false,
@@ -37,7 +37,7 @@ const HomePage = ({ onRenderComplete }) => {
     fetchMovies();
   }, []);
 
-  // Tạo các callback functions ổn định
+  // Create stable callback functions
   const onHeroComplete = useCallback(() => {
     setRenderStates((prev) => ({ ...prev, hero: true }));
   }, []);
@@ -66,14 +66,14 @@ const HomePage = ({ onRenderComplete }) => {
     setRenderStates((prev) => ({ ...prev, popularGenres: true }));
   }, []);
 
-  // Gọi onRenderComplete khi tất cả sections đã render xong
+  // Call onRenderComplete when all sections are rendered
   useEffect(() => {
     if (renderStates.popularGenres && onRenderComplete) {
       onRenderComplete();
     }
   }, [renderStates.popularGenres, onRenderComplete]);
 
-  // Check nếu data chưa load xong
+  // Check if data is still loading
   if (!animationMovies.length || !horrorMovies.length) {
     return (
       <div className="d-flex justify-content-center align-items-center">
@@ -84,25 +84,25 @@ const HomePage = ({ onRenderComplete }) => {
 
   return (
     <>
-      {/* Hero - render đầu tiên */}
+      {/* Hero - render first */}
       <Hero onRenderComplete={onHeroComplete} />
 
-      {/* TrendingMovies - chỉ render khi Hero đã render xong */}
+      {/* TrendingMovies - only render when Hero is rendered */}
       {renderStates.hero && (
         <TrendingMovies onRenderComplete={onTrendingComplete} />
       )}
 
-      {/* RecentlyReleased - chỉ render khi TrendingMovies đã render xong */}
+      {/* RecentlyReleased - only render when TrendingMovies is rendered */}
       {renderStates.trendingMovies && (
         <RecentlyReleased onRenderComplete={onRecentlyReleasedComplete} />
       )}
 
-      {/* CommingSoon - chỉ render khi RecentlyReleased đã render xong */}
+      {/* CommingSoon - only render when RecentlyReleased is rendered */}
       {renderStates.recentlyReleased && (
         <CommingSoon onRenderComplete={onComingSoonComplete} />
       )}
 
-      {/* Animation Carousel - chỉ render khi CommingSoon đã render xong */}
+      {/* Animation Carousel - only render when CommingSoon is rendered */}
       {renderStates.commingSoon && animationMovies.length > 0 && (
         <MovieCarousel
           title="Animation"
@@ -111,7 +111,7 @@ const HomePage = ({ onRenderComplete }) => {
         />
       )}
 
-      {/* Horror Carousel - chỉ render khi Animation Carousel đã render xong */}
+      {/* Horror Carousel - only render when Animation Carousel is rendered */}
       {renderStates.animationCarousel && horrorMovies.length > 0 && (
         <MovieCarousel
           title="Horror"
@@ -120,7 +120,7 @@ const HomePage = ({ onRenderComplete }) => {
         />
       )}
 
-      {/* PopularGenres - chỉ render khi Horror Carousel đã render xong */}
+      {/* PopularGenres - only render when Horror Carousel is rendered */}
       {renderStates.horrorCarousel && (
         <PopularGenres onRenderComplete={onPopularGenresComplete} />
       )}

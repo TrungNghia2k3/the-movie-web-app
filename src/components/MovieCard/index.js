@@ -30,9 +30,13 @@ const MovieCard = ({ id, image, title }) => {
   return (
     <>
       <div className="movie-card">
+
+        {/* Movie Image */}
         <div className="image-wrapper">
           <img src={image} alt={title} />
         </div>
+
+        {/* Movie Details */}
         <div className="content">
           <h3 className="mb-2 fs-3">{title}</h3>
 

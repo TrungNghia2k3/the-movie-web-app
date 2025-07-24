@@ -12,7 +12,7 @@ import {
 import { convertMinutesToHourMinute } from "../../utils/helpers";
 import "./CommingSoon.css";
 
-const CommingSoon = ({onRenderComplete}) => {
+const CommingSoon = ({ onRenderComplete }) => {
   const [highlightMovie, setHighlightMovie] = useState(null);
   const [countdown, setCountdown] = useState({
     days: "00",
@@ -31,7 +31,7 @@ const CommingSoon = ({onRenderComplete}) => {
         const upcomingMovies = await getUpcomingMovies();
 
         for (const movie of upcomingMovies) {
-          // Kiểm tra các trường cần thiết
+          // Check required fields
           if (
             !movie.title ||
             !movie.overview ||
@@ -41,13 +41,13 @@ const CommingSoon = ({onRenderComplete}) => {
             continue;
           }
 
-          // Lấy trailer
+          // Get trailer
           const trailerData = await getMovieTrailer(movie.id);
           if (!trailerData || trailerData.length === 0) {
             continue;
           }
 
-          // Nếu có trailer, lấy chi tiết & credits
+          // If there is a trailer, get details & credits
           const detail = await getMovieDetail(movie.id);
           const credits = await getMovieCredits(movie.id);
 
@@ -61,7 +61,7 @@ const CommingSoon = ({onRenderComplete}) => {
             director: director ? director.name : "Unknown",
           });
 
-          break; // Thoát khỏi vòng lặp khi đã chọn được phim phù hợp
+          break; // Exit loop when a suitable movie is selected
         }
       } catch (error) {
         console.error("Error fetching upcoming movie data", error);
@@ -71,12 +71,12 @@ const CommingSoon = ({onRenderComplete}) => {
     fetchUpcomingMovieData();
   }, []);
 
-  // Gọi onRenderComplete khi component đã render xong và có data
+  // Call onRenderComplete when component has rendered and has data
   useEffect(() => {
     if (highlightMovie && onRenderComplete) {
       onRenderComplete();
     }
-  }, [highlightMovie, onRenderComplete]); // Chỉ depend vào highlightMovie
+  }, [highlightMovie, onRenderComplete]); // Only depend on highlightMovie
 
   // Countdown logic
   useEffect(() => {
@@ -122,18 +122,19 @@ const CommingSoon = ({onRenderComplete}) => {
     <section className="coming-soon position-relative overflow-hidden">
       <div className="blur-background"
         style={{
-          backgroundImage: `url(${
-            BACKDROP_W1280_URL + highlightMovie.backdrop_path
-          })`,
+          backgroundImage: `url(${BACKDROP_W1280_URL + highlightMovie.backdrop_path
+            })`,
         }}
       ></div>
 
+      {/* Section-wide ribbon */}
+      <div className="coming-soon-ribbon">
+        <h4>Coming Soon</h4>
+      </div>
+
       <div className="container-fluid position-relative">
-        <div className="row">
-          <div className="col-xl-4 col-lg-6 coming-soon-left">
-            <div className="coming-soon-top-title">
-              <h4>Coming Soon</h4>
-            </div>
+        <div className="row justify-content-center">
+          <div className="col-xl-4 col-md-6 col-lg-6 coming-soon-left">
             <div className="coming-soon-content text-white">
               <h1 className="mt-5">{highlightMovie.title}</h1>
               <p>{highlightMovie.overview}</p>
@@ -197,7 +198,7 @@ const CommingSoon = ({onRenderComplete}) => {
               </ul>
             </div>
           </div>
-          <div className="col-xl-8 col-lg-6">
+          <div className="col-xl-8 col-md-6 col-lg-6 coming-soon-right">
             <img
               className="img-fluid w-100 rounded-5 p-4"
               src={BACKDROP_W1280_URL + highlightMovie.backdrop_path}

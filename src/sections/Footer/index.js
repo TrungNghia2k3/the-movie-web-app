@@ -71,10 +71,10 @@ const Footer = () => {
         </div>
       </div>
 
-      <hr className="border-secondary my-4" />
+      <hr className="border-secondary line" />
 
       {/* Bottom Footer */}
-      <div className="container-fluid pb-3">
+      <div className="container-fluid pb-3 bottom-footer">
         <div className="row align-items-center">
           <div className="col-md-6 text-center text-md-start">
             © 2025 All rights reserved by <a href="/">The Movie Web App</a>.

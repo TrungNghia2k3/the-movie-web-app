@@ -5,3 +5,14 @@
 .collection h1 {
     margin-bottom: 40px;
 }
+
+@media (max-width: 575.98px) {
+  .collection {
+    padding: 0 1.2rem 0 1.2rem;
+  }
+
+  .collection h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+}

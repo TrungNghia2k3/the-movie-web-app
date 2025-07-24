@@ -3,16 +3,16 @@
   border-radius: 25px;
   position: relative;
   cursor: pointer;
-  transition: all 700ms ease-out;
+  transition: all 1200ms ease-in-out;
   overflow: visible;
-  z-index: 1;
+  z-index: 2;
   margin-bottom: 24px;
 }
 
 .movie-card:hover {
   margin-top: -120px;
-  z-index: 99;
-  transition: all 700ms ease-out;
+  z-index: 99999;
+  transition: all 1200ms ease-in-out;
 }
 
 .movie-card .content {
@@ -21,11 +21,18 @@
   height: 0;
   opacity: 0;
   visibility: hidden;
-  background-color: #1b1b1b;
+  background-color: transparent;
   border-radius: 0 0 25px 25px;
   padding: 0 24px;
-  transition: all 400ms ease-out;
+  transition: all 1000ms ease-in-out;
   overflow: hidden;
+}
+
+/* Content children initial state */
+.movie-card .content * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
 }
 
 
@@ -36,7 +43,17 @@
   padding: 24px;
   opacity: 1;
   visibility: visible;
-  transition: all 700ms ease-out;
+  background-color: #1b1b1b;
+  transition: all 1000ms ease-in-out;
+  z-index: inherit;
+}
+
+/* Content children hover state - synchronized appearance */
+.movie-card:hover .content * {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
+  transition-delay: 0ms;
 }
 
 .movie-card img {
@@ -48,4 +65,47 @@
 
 .movie-card:hover img {
   border-radius: 25px 25px 0 0;
+}
+
+/* Mobile specific improvements for hover effect */
+@media (max-width: 575.98px) {
+  .movie-card:hover {
+    margin-top: -120px;
+    z-index: 99999;
+    position: relative;
+    transform: translateZ(0); /* Creates new stacking context */
+  }
+  
+  .movie-card:hover .content {
+    position: absolute;
+    z-index: 99999;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Ensure MovieCard hover appears above all section elements */
+.movie-card:hover {
+  z-index: 999999 !important;
+  position: relative !important;
+}
+
+.movie-card:hover .content {
+  z-index: 999999 !important;
+}
+
+/* Specific override for footer and pagination interference */
+.movie-card:hover {
+  transform: translateZ(1000px) !important;
+}
+
+/* Additional rules to ensure MovieCard always appears above footer and pagination */
+.movie-card:hover,
+.movie-card:hover .content {
+  z-index: 999999 !important;
+  position: relative !important;
+}
+
+/* Override any parent stacking contexts */
+.movie-card:hover {
+  isolation: isolate;
 }

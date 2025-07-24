@@ -17,7 +17,7 @@ const FilterSidebar = ({ onFilterChange }) => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [selectedLetter, setSelectedLetter] = useState("All");
 
-  // UI state - giữ nguyên format dễ đọc cho UI
+  // UI state - keep original format for UI readability
   const [filters, setFilters] = useState({
     genre: [], // select more than 1 (display: string[], API: int32[])
     country: [], // select only 1 (display: string[], API: string[])
@@ -28,7 +28,7 @@ const FilterSidebar = ({ onFilterChange }) => {
     sortBy: [], // select only 1 (display: string[], API: string[])
   });
 
-  // Tạo lookup maps cho performance tốt hơn (chỉ tạo 1 lần)
+  // Create lookup maps for better performance (create once)
   const lookupMaps = useMemo(
     () => createLookupMaps({ genres, countries, types, languages, sorts }),
     []
@@ -46,7 +46,7 @@ const FilterSidebar = ({ onFilterChange }) => {
     sortBy: sorts.map((sort) => sort.name),
   };
 
-  // Cấu hình loại input cho từng category
+  // Configure input type for each category
   const filterConfig = {
     genre: { multiple: true, type: "checkbox" }, // select more than 1
     country: { multiple: false, type: "radio" }, // select only 1
@@ -66,7 +66,7 @@ const FilterSidebar = ({ onFilterChange }) => {
     const config = filterConfig[category];
 
     if (config.multiple) {
-      // Checkbox logic - có thể chọn nhiều
+      // Checkbox logic - can select multiple
       if (newFilters[category].includes(value)) {
         newFilters[category] = newFilters[category].filter(
           (item) => item !== value
@@ -75,20 +75,20 @@ const FilterSidebar = ({ onFilterChange }) => {
         newFilters[category] = [...newFilters[category], value];
       }
     } else {
-      // Radio logic - chỉ chọn 1
+      // Radio logic - can select only 1
       if (newFilters[category].includes(value)) {
-        // Nếu đã chọn thì bỏ chọn (cho phép unselect)
+        // If already selected, deselect (allow unselect)
         newFilters[category] = [];
       } else {
-        // Chọn giá trị mới (thay thế giá trị cũ)
+        // Select new value (replace old value)
         newFilters[category] = [value];
       }
     }
 
     setFilters(newFilters);
 
-    // ❌ REMOVED: Không gọi onFilterChange ở đây nữa
-    // Convert và gửi API-ready filters
+    // ❌ REMOVED: Do not call onFilterChange here
+    // Convert and send API-ready filters
     // if (onFilterChange) {
     //   const apiFilters = convertFiltersForAPIOptimized(
     //     { ...newFilters, letter: selectedLetter },
@@ -101,7 +101,7 @@ const FilterSidebar = ({ onFilterChange }) => {
   const handleLetterFilter = (letter) => {
     setSelectedLetter(letter);
 
-    // ❌ REMOVED: Không gọi onFilterChange ở đây nữa
+    // ❌ REMOVED: Do not call onFilterChange here
     // if (onFilterChange) {
     //   const apiFilters = convertFiltersForAPIOptimized(
     //     { ...filters, letter },
@@ -125,7 +125,7 @@ const FilterSidebar = ({ onFilterChange }) => {
     setSelectedLetter("All");
 
     if (onFilterChange) {
-      // Gửi empty object khi clear all
+      // Send empty object when clear all
       onFilterChange({});
     }
   };

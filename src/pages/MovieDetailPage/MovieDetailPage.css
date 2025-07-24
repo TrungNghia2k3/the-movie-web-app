@@ -19,6 +19,7 @@
 .movie-detail-banner .container-fluid {
   position: relative;
   z-index: 2;
+  margin: 0 3rem;
 }
 
 /* Poster and Trailer Styles */
@@ -104,4 +105,44 @@
 
 .text-success-custom {
     color: #58dda3;
+}
+
+/* Hide desktop filter panel on mobile devices */
+@media (max-width: 575.98px) {
+
+  .movie-detail-banner {
+    padding: 40px 8px;
+    margin-bottom: 40px;
+  }
+
+  .movie-detail-banner .container-fluid {
+    margin: 0;
+  }
+
+  .movie-poster-container {
+    padding: 0;
+    margin-bottom: 20px;
+  }
+
+  .movie-title {
+    font-size: 2rem;
+  }
+}
+
+/* Medium Devices (≥768px) */
+@media (min-width: 768px) and (max-width: 991.98px) {}
+
+/* Large Devices (≥992px) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .movie-detail-banner .container-fluid {
+    margin: 0;
+  }
+
+  .movie-title {
+    margin-top: 2rem;
+  }
+
+  .movie-overview{
+        max-width: 1000px;
+  }
 }

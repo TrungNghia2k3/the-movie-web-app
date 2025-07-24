@@ -33,7 +33,7 @@ const RecentlyReleased = ({ onRenderComplete }) => {
         <div className="row">
           {recentlyReleasedMovies.slice(0, 8).map((movie) => (
             <div
-              className="col-xl-3 col-lg-4 col-md-6 col-sm-6 my-4"
+              className="col-xl-3 col-lg-6 col-md-6 col-sm-6 my-4"
               key={movie.id}
             >
               <MovieCard

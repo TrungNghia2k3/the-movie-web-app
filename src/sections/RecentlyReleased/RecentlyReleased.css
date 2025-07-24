@@ -5,3 +5,10 @@
 .recently-released h1 {
     margin-bottom: 40px;
 }
+
+/* Hide desktop filter panel on mobile devices */
+@media (max-width: 575.98px) {
+  .recently-released {
+    padding: 0 1.2rem 80px 1.2rem;
+  }
+}

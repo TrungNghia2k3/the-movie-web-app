@@ -1,11 +1,11 @@
 // filterConverter.js
-// Helper functions để convert filter values từ display names sang API values
+// Helper functions to convert filter values from display names to API values
 
 /**
- * Convert filters từ UI format sang API format
- * @param {Object} filters - Filter object từ UI state
- * @param {Object} lookupData - Data objects chứa các mapping
- * @returns {Object} - Converted filters cho API
+ * Convert filters from UI format to API format
+ * @param {Object} filters - Filter object from UI state
+ * @param {Object} lookupData - Data objects containing mappings
+ * @returns {Object} - Converted filters for API
  */
 export const convertFiltersForAPI = (
   filters,
@@ -110,9 +110,9 @@ export const createLookupMaps = ({
 
 /**
  * Optimized converter using lookup maps
- * @param {Object} filters - Filter object từ UI state
+ * @param {Object} filters - Filter object from UI state
  * @param {Object} lookupMaps - Pre-created lookup maps
- * @returns {Object} - Converted filters cho API
+ * @returns {Object} - Converted filters for API
  */
 export const convertFiltersForAPIOptimized = (filters, lookupMaps) => {
   const {

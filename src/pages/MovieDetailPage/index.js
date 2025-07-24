@@ -23,17 +23,41 @@ const MovieDetailPage = ({ onRenderComplete }) => {
   const [showModal, setShowModal] = useState(false);
   const [recommendMovies, setRecommendMovies] = useState([]);
 
+  // Filter function to ensure movies have all necessary information
+  const isMovieComplete = (movie) => {
+    return (
+      movie &&
+      movie.id &&
+      movie.title &&
+      movie.backdrop_path && // Must have image
+      movie.backdrop_path !== null &&
+      movie.backdrop_path !== "" &&
+      typeof movie.backdrop_path === 'string' && // Must be a string, not object
+      movie.backdrop_path.length > 0 &&
+      movie.backdrop_path !== "[object Object]" && // Filter out exact [object Object]
+      !movie.backdrop_path.includes('[object Object]') && // Filter out [object Object] substring
+      movie.backdrop_path.startsWith('/') && // Must be a valid path starting with /
+      movie.overview && // Must have overview
+      movie.overview !== "" &&
+      movie.release_date && // Must have release date
+      movie.release_date !== ""
+    );
+  };
+
   useEffect(() => {
     const fetchMovieDetail = async () => {
       try {
         const detail = await getMovieDetail(id);
         const trailers = await getMovieTrailer(id);
         const trailer = trailers?.find((trailer) => trailer.type === "Trailer");
-        const recommendMovies = await getRecommendMovies(id);
+        const recommendMoviesData = await getRecommendMovies(id);
+
+        // Filter recommended movies to only include those with complete information
+        const completeRecommendMovies = (recommendMoviesData || []).filter(isMovieComplete);
 
         setMovieDetail(detail);
         setTrailer(trailer);
-        setRecommendMovies(recommendMovies);
+        setRecommendMovies(completeRecommendMovies);
       } catch (error) {
         console.error("Error fetching movie data:", error);
       }
@@ -77,12 +101,13 @@ const MovieDetailPage = ({ onRenderComplete }) => {
             })`,
           }}
         ></div>
-        <div className="container-fluid mx-5">
+        <div className="container-fluid">
           <div className="row">
             {/* Left side - Movie Poster with Play Button */}
             <div className="col-xl-8">
               <div className="row">
-                <div className="col-lg-6">
+                {/* Left side - Movie Poster with Play Button */}
+                <div className="col-xl-6 col-lg-12 col-md-12 movie-poster-container">
                   <div className="trailer-box position-relative">
                     <img
                       src={BACKDROP_W1280_URL + movieDetail.backdrop_path}
@@ -101,8 +126,10 @@ const MovieDetailPage = ({ onRenderComplete }) => {
                       </button>
                     </div>
                   </div>
+
+                  {/* Right side - Movie Content */}
                 </div>
-                <div className="col-lg-6">
+                <div className="col-xl-6 col-lg-12 col-md-12 movie-content-container">
                   <div className="movie-content text-white">
                     <h1 className="movie-title mb-3">{movieDetail.title}</h1>
                     <p className="movie-overview mb-4">

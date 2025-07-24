@@ -35,3 +35,22 @@
   bottom: 24px;
   left: 24px;
 }
+
+
+/* Mobile responsive styles */
+@media (max-width: 575.98px) {
+  .popular-genres {
+    padding: 0px 1.2rem;
+    margin-bottom: 40px;
+  }
+
+  .genre-card {
+    border-radius: 15px;
+  }
+
+  .genre-link h4 {
+    font-size: 1.2rem;
+    bottom: 16px;
+    left: 16px;
+  }
+}

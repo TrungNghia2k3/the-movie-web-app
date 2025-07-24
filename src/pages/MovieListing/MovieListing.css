@@ -1,0 +1,10 @@
+.listing-container {
+    padding: 80px;
+}
+
+/* Hide desktop filter panel on mobile devices */
+@media (max-width: 575.98px) {
+    .listing-container {
+        padding: 1.2rem;
+    }
+}
